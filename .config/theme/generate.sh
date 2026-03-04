@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# Generates glitchberry theme files from colors.sh
+#
+# Output files (not version-controlled — run this after cloning dotfiles):
+#   ~/.config/alacritty/glitchberry.toml
+#   ~/.vim/colors/glitchberry.vim
+#   ~/.config/theme/tmux-theme.conf
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"

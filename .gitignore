@@ -13,17 +13,15 @@
 
 # vim
 !.vimrc
-!.vim/
-.vim/undodir/
-.vim/.netrwhist
-!.vim/colors/
 
 # .config — allow only our dirs
 !.config/
 .config/*
 !.config/alacritty/
+.config/alacritty/glitchberry.toml
 !.config/tmux/
 !.config/theme/
+.config/theme/tmux-theme.conf
 
 # track this gitignore itself
 !.gitignore
