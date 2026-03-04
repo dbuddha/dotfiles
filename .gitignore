@@ -1,0 +1,29 @@
+# ignore everything
+*
+
+# never track backups/swap files even in allowed dirs
+*.bak
+*.swp
+*.tmp
+*~
+
+# shell
+!.zshrc
+!.zprofile
+
+# vim
+!.vimrc
+!.vim/
+.vim/undodir/
+.vim/.netrwhist
+!.vim/colors/
+
+# .config — allow only our dirs
+!.config/
+.config/*
+!.config/alacritty/
+!.config/tmux/
+!.config/theme/
+
+# track this gitignore itself
+!.gitignore

@@ -1,0 +1,24 @@
+[general]
+import = ["~/.config/alacritty/glitchberry.toml"]
+
+[env]
+COLORTERM = "truecolor"
+
+[window]
+decorations = "Buttonless"
+opacity = 0.999
+blur = false
+padding = { x = 15, y = 15 }
+option_as_alt = "None"
+
+[font]
+size = 14.0
+
+[font.normal]
+#family = "JetBrains Mono NL"
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[cursor]
+style = { shape = "Underline", blinking = "Always" }
+blink_interval = 750

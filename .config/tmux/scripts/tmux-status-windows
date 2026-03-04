@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+eval "$(tmux show-environment -g 2>/dev/null | grep '^THEME_')"
+FG_ACTIVE=$THEME_WINDOW_ACCENT
+FG_INACTIVE=$THEME_COMMENT
+BG_ACTIVE=$THEME_CURSORLINE
+BG_INACTIVE=$THEME_BORDER
+FG_OVERFLOW=$THEME_MUTED
+
+raw=()
+while IFS= read -r line; do
+  raw+=("$line")
+done < <(tmux list-windows -F '#{window_index}:#{window_name}:#{window_active}')
+total=${#raw[@]}
+if (( total == 0 )); then
+  exit 0
+fi
+indices=()
+names=()
+active_idx=0
+for (( i=0; i<total; i++ )); do
+  IFS=: read -r idx name is_active <<< "${raw[i]}"
+  indices+=("$idx")
+  names+=("$name")
+  if [[ "$is_active" == "1" ]]; then
+    active_idx=$i
+  fi
+done
+max_visible=4
+if (( total <= max_visible )); then
+  start=0
+  end=$total
+else
+  start=$((active_idx - max_visible / 2))
+  (( start < 0 )) && start=0
+  end=$((start + max_visible))
+  if (( end > total )); then
+    end=$total
+    start=$((end - max_visible))
+  fi
+fi
+ICON=$''
+output=""
+hidden_before=$start
+if (( hidden_before > 0 )); then
+  output+="#[fg=${FG_OVERFLOW},bg=default] +${hidden_before} "
+fi
+for (( i=start; i<end; i++ )); do
+  label="${indices[i]}:${names[i]}"
+  if (( i == active_idx )); then
+    output+="#[fg=${FG_ACTIVE},bg=${BG_ACTIVE},bold] ${label} #[bg=default,nobold]"
+  else
+    output+="#[fg=${FG_INACTIVE},bg=${BG_INACTIVE}] ${label} #[bg=default]"
+  fi
+done
+hidden_after=$((total - end))
+if (( hidden_after > 0 )); then
+  output+="#[fg=${FG_OVERFLOW},bg=default] +${hidden_after} "
+fi
+output+="#[fg=${FG_ACTIVE},bg=${BG_ACTIVE},bold] ${ICON} #[bg=default,nobold]"
+printf '%s' "$output"
