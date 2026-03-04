@@ -17,6 +17,7 @@
 # .config — allow only our dirs
 !.config/
 .config/*
+!.config/fonts/
 !.config/alacritty/
 .config/alacritty/glitchberry.toml
 !.config/tmux/
