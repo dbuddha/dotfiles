@@ -319,7 +319,7 @@ set -g popup-border-lines $TMUX_BORDER_LINES
 
 # context menus (prefix + < / > , right-click)
 set -g menu-style "fg=$THEME_FG,bg=$THEME_BG"
-set -g menu-selected-style "fg=$THEME_BG,bg=$THEME_PURPLE"
+set -g menu-selected-style "fg=$THEME_FG_BRIGHT,bg=$THEME_SELECTION"
 set -g menu-border-style "fg=$THEME_BORDER,bg=$THEME_BG"
 set -g menu-border-lines $TMUX_BORDER_LINES
 
