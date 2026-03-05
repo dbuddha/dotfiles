@@ -312,10 +312,24 @@ set -g mode-style "bg=$THEME_SELECTION,fg=$THEME_FG"
 set -g pane-border-style "fg=$THEME_BORDER"
 set -g pane-active-border-style "fg=$THEME_BORDER"
 
-# popups — border-lines set from THEME_BORDER_STYLE in colors.sh
+# popups
 set -g popup-style "fg=$THEME_FG,bg=$THEME_BG"
 set -g popup-border-style "fg=$THEME_BORDER,bg=$THEME_BG"
 set -g popup-border-lines $TMUX_BORDER_LINES
+
+# context menus (prefix + < / > , right-click)
+set -g menu-style "fg=$THEME_FG,bg=$THEME_BG"
+set -g menu-selected-style "fg=$THEME_BG,bg=$THEME_PURPLE"
+set -g menu-border-style "fg=$THEME_BORDER,bg=$THEME_BG"
+set -g menu-border-lines $TMUX_BORDER_LINES
+
+# command prompt in vi-command mode (prefix + : then Esc)
+set -g message-command-style "fg=$THEME_AMBER,bg=$THEME_CURSORLINE"
+
+# copy-mode search highlights
+set -g copy-mode-match-style "fg=$THEME_CYAN,bg=$THEME_SEARCH"
+set -g copy-mode-current-match-style "fg=$THEME_BG_ALT,bg=$THEME_CYAN"
+set -g copy-mode-mark-style "fg=$THEME_AMBER,bg=$THEME_CURSORLINE"
 
 # expose palette as tmux env vars for scripts
 set-environment -g THEME_BG "$THEME_BG"
