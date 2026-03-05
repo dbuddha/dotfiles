@@ -36,7 +36,7 @@ else
     start=$((end - max_visible))
   fi
 fi
-ICON=$''
+ICON=$' '
 output="#[fg=${FG_ACTIVE},bg=${BG_ACTIVE},bold] ${ICON} #[bg=default,nobold]"
 for (( i=start; i<end; i++ )); do
   s="${sessions[i]}"

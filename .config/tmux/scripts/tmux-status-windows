@@ -38,7 +38,7 @@ else
     start=$((end - max_visible))
   fi
 fi
-ICON=$''
+ICON=$' '
 output=""
 hidden_before=$start
 if (( hidden_before > 0 )); then
